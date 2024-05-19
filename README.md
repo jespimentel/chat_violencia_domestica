@@ -8,4 +8,4 @@ O Streamlit é usado para a construção de uma interface do usuário simples e 
 
 A solução pode, em algum contexto, ajudar as vítimas a obter, de forma mais rápida e direta, as informações de que necessita para a compreensão do assunto e entendimento sobre os instrumentos de proteção legal colocados a seu alcance.
 
-O cógido foi adaptado de https://blog.streamlit.io/build-a-chatbot-with-custom-data-sources-powered-by-llamaindex/#what-is-llamaindex por José Eduardo de Souza Pimentel, para eventual uso da Promotoria de Justiça de Piracicaba.
+O códido foi adaptado de https://blog.streamlit.io/build-a-chatbot-with-custom-data-sources-powered-by-llamaindex/#what-is-llamaindex por José Eduardo de Souza Pimentel, para eventual uso da Promotoria de Justiça de Piracicaba.
