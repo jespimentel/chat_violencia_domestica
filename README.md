@@ -1,4 +1,4 @@
-# Tira-dúvidas para a vítima de violência doméstica
+# Chatbot dedicado à vítima de violência doméstica
 
 O presente chatbot usa o poder das LLMs e do Python para ajudar a vítima de violência doméstica.
 

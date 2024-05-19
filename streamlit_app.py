@@ -1,7 +1,7 @@
-# Chat da violência doméstica 
+# Chatbot dedicado à vítima de violência doméstica 
 # Adaptado de https://blog.streamlit.io/build-a-chatbot-with-custom-data-sources-powered-by-llamaindex/#what-is-llamaindex
-# por José Eduardo de Souza Pimentel, sob licença MIT
-# para uso da Promotoria de Justiça de Piracicaba
+# por José Eduardo de Souza Pimentel
+# para uso da Promotoria de Justiça de Piracicaba sob supervisão de Promotor de Justiça ou funcionário
 
 import streamlit as st
 import openai
@@ -13,9 +13,9 @@ except ImportError:
 
 st.set_page_config(page_title="Pergunte-me qualquer coisa sobre violência domestica...", page_icon="🏠", layout="centered", initial_sidebar_state="auto", menu_items=None)
 openai.api_key = st.secrets["OpenAI_key"]
-st.title("Promotoria de Justiça de Piracicaba/SP")
+st.title("Promotoria de Justiça de Piracicaba/SP - Projeto Experimental")
 st.header("Pergunte-me qualquer coisa sobre violência doméstica... 🏠")
-st.info("Baseado em cartilhas publicadas por órgãos oficiais e de acesso livre na web. Use como simples referência. Não dispensa a consulta a um profissional.")
+st.info("Baseado em cartilhas publicadas por órgãos oficiais e de acesso livre na web. Use como simples referência. Não dispensa a consulta ao Promotor e seus auxiliares. Não tome atitudes fundadas exclusivamente nessas respostas. Não guardamos as conversas.")
          
 if "messages" not in st.session_state.keys(): # Initialize the chat messages history
     st.session_state.messages = [
@@ -29,7 +29,7 @@ def load_data():
         docs = reader.load_data()
         # llm = OpenAI(model="gpt-3.5-turbo", temperature=0.5, system_prompt="You are an expert o$
         # index = VectorStoreIndex.from_documents(docs)
-        system_prompt = """Você é um promotor de justiça especializado em violência doméstica. Seu trabalho é responder a questões técnicas, com empatia. Assuma que todas as questões são relacionadas a violência doméstica. Suas respostas devem ser baseada nos dados. Não responsa nada fora do assunto violência doméstica. Responda em português. Não alucine."""
+        system_prompt = """Você é um promotor de justiça especializado em violência doméstica. Seu trabalho é responder a questões técnicas, com empatia. Suas respostas devem ser baseada nos dados fornecidos. Não responsa nada fora dos dados. Não responda nada fora do assunto violência doméstica. Responda em português. Não alucine."""
         service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-3.5-turbo-0125", temperature=0.9, system_prompt=system_prompt))
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
         return index
