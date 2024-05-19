@@ -15,7 +15,7 @@ st.set_page_config(page_title="Pergunte-me qualquer coisa sobre violência domes
 openai.api_key = st.secrets["OpenAI_key"]
 st.title("Promotoria de Justiça de Piracicaba/SP")
 st.header("Pergunte-me qualquer coisa sobre violência doméstica... 🏠")
-st.info("Baseado em cartilhas publicadas por órgãos oficiais e de acesso livre na web")
+st.info("Baseado em cartilhas publicadas por órgãos oficiais e de acesso livre na web. Use como simples referência. Não dispensa a consulta a um profissional.")
          
 if "messages" not in st.session_state.keys(): # Initialize the chat messages history
     st.session_state.messages = [
