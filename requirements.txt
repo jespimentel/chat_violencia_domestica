@@ -1,0 +1,7 @@
+source 
+streamlit
+openai
+llama-index
+llama-index-llms-openai
+nltk
+pypdf
