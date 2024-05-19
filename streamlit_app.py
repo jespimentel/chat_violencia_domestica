@@ -29,8 +29,8 @@ def load_data():
         docs = reader.load_data()
         # llm = OpenAI(model="gpt-3.5-turbo", temperature=0.5, system_prompt="You are an expert o$
         # index = VectorStoreIndex.from_documents(docs)
-        system_prompt = """Você é um promotor de justiça especializado em violência doméstica. Seu trabalho é responder a questões técnicas, com empatia. Assuma que todas as questões são relacionadas a violência doméstica. Suas respostas devem ser baseada nos dados. Não responsa nada fora desse assunto. Não alucine."""
-        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-3.5-turbo", temperature=0.8, system_prompt=system_prompt))
+        system_prompt = """Você é um promotor de justiça especializado em violência doméstica. Seu trabalho é responder a questões técnicas, com empatia. Assuma que todas as questões são relacionadas a violência doméstica. Suas respostas devem ser baseada nos dados. Não responsa nada fora do assunto violência doméstica. Responda em português. Não alucine."""
+        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-3.5-turbo-0125", temperature=0.9, system_prompt=system_prompt))
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
         return index
 
