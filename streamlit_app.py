@@ -12,11 +12,18 @@ except ImportError:
   from llama_index.core import VectorStoreIndex, ServiceContext, Document, SimpleDirectoryReader
 
 st.set_page_config(page_title="Pergunte-me qualquer coisa sobre violência domestica...", page_icon="🏠", layout="centered", initial_sidebar_state="auto", menu_items=None)
-openai.api_key = st.secrets["OpenAI_key"]
 st.title("Promotoria de Justiça de Piracicaba/SP - Projeto Experimental")
 st.header("Pergunte-me qualquer coisa sobre violência doméstica... 🏠")
 st.info("Baseado em cartilhas publicadas por órgãos oficiais e de acesso livre na web. Use como simples referência. SUJEITO A ERROS. Não dispensa a consulta aos profissionais especializados no tema. Não tome atitudes fundadas exclusivamente nessas respostas.")
-         
+
+#openai.api_key = st.secrets["OpenAI_key"]
+openai.api_key = st.sidebar.text_input("Forneça sua API Key:", type="password")
+
+if not openai.api_key:
+    st.sidebar.warning("Por favor, digite sua API Key para continuar.")
+    st.stop()
+st.sidebar.success("Obrigado!")
+
 if "messages" not in st.session_state.keys(): # Initialize the chat messages history
     st.session_state.messages = [
         {"role": "assistant", "content": "Pergunte-me qualquer coisa sobre violência domestica..."}
@@ -30,7 +37,7 @@ def load_data():
         # llm = OpenAI(model="gpt-3.5-turbo", temperature=0.5, system_prompt="You are an expert o$
         # index = VectorStoreIndex.from_documents(docs)
         system_prompt = """Você é um promotor de justiça especializado em violência doméstica. Seu trabalho é responder a questões técnicas, com empatia. Suas respostas devem ser baseada nos dados fornecidos. Não responsa nada fora dos dados. Não responda nada fora do assunto violência doméstica. Responda em português. Não alucine."""
-        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-3.5-turbo-0125", temperature=0.9, system_prompt=system_prompt))
+        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-4o-mini", temperature=0.9, system_prompt=system_prompt))
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
         return index
 
